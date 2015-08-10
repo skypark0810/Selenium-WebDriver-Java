@@ -13,10 +13,11 @@ public class WebDriverExample
 {
     public static void main( String[] args )
     {
-    	//System.setProperty ("webdriver.chrome.driver","C:\\Program Files\\chromedriver.exe");
-        //WebDriver driver = new ChromeDriver();
-    	WebDriver driver = new FirefoxDriver();
-        driver.get("http://www.google.com");                 	   	    	
+    	System.setProperty ("webdriver.chrome.driver","C:\\Program Files\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+    	//WebDriver driver = new FirefoxDriver();
+        driver.get("http://www.google.com");
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     	driver.findElement(By.xpath("//div[@id='gs_lc0']/input[@aria-haspopup='false']")).sendKeys("Sem");     	      
     	driver.findElement(By.xpath("//form[@id='tsf']/div[2]/div[3]/center/input[1]")).submit();
     	
@@ -24,8 +25,6 @@ public class WebDriverExample
     	secondPageElement.clear();    	
     	secondPageElement.sendKeys("calculator website");
     	driver.findElement(By.xpath("//div[@id='sblsbb']/button")).submit();
-    	//String url_search = driver.getCurrentUrl();
-    	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     	driver.findElement(By.partialLinkText("Calculator.net")).click();
     	
         driver.manage().window().maximize();
@@ -40,7 +39,7 @@ public class WebDriverExample
 		System.out.println("Navigation is not right(Not going to Weight Loss Calculators)");
 		}
 		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		//driver.findElement(By.partialLinkText("Math")).click();
 		driver.findElement(By.xpath("//div[@id='menu']/div[4]/a")).click();
 		if(driver.getCurrentUrl().contains("math-calculator.html"))
